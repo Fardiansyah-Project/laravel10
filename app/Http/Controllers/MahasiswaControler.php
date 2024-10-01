@@ -26,7 +26,6 @@ class MahasiswaControler extends Controller
             Alert::error('Error', $errors);
             return redirect()->back()->with('errors', $errors);
         }
-
         $data = new mahasiswamodel();
         $data->name = $request->name;
         $data->nim = $request->nim;
@@ -34,7 +33,18 @@ class MahasiswaControler extends Controller
         $data->save();
         Alert::success('Succses menambah data');
         return redirect()->back();
+    }
 
+    public function deleteData($id){
+        $data = mahasiswamodel::find($id);
+        if (!$data) {
+            Alert::error('Error', 'Data tidak ditemukan');
+            return redirect()->back();
+        }
+
+        $data->delete();
+        Alert::success('Success', 'Data berhasil dihapus');
+        return redirect()->back();
     }
 }
 
