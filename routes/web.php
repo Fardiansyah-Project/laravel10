@@ -23,4 +23,5 @@ Route::get('/', function () {
 Route::prefix('mahasiswa')->group(function(){
     Route::get('/', [MahasiswaControler::class, 'getAllData']);
     Route::post('/create', [MahasiswaControler::class, 'createData']);
+    Route::delete('/delete/{id}', [MahasiswaControler::class, 'deleteData']);
 });
